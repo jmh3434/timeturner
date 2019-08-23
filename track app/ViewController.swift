@@ -1,20 +1,14 @@
-//
-//  ViewController.swift
-//  track app
-//
-//  Created by James Hunt on 4/10/19.
-//  Copyright © 2019 James Hunt. All rights reserved.
-//
+
 
 import UIKit
 
 
-var weekDays = Week()
-var scrollNum = Int()
 
-
+var week = Week()
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource {
+    
+    var scrollNum = Int()
     let dv = Draw()
     
     @IBOutlet weak var timeLabel: UILabel!
@@ -59,18 +53,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("== \(names)")
             }
         }
-       //let customFont = UIFont(name: "SFProDisplay-Regular", size: 12)
-       // timeLabel.font = customFont
-       //label.adjustsFontForContentSizeCategory = true
-       //timeLabel.font = UIFont(name: "SFProDisplay-Regular", size: 9)
-       // retrieve user defaults
+
         
         
     
-        weekDays.weekDay = getCurrentDay()
+        week.weekDay = WeekDay(rawValue: getCurrentDay())!
+    
+        
+        
         
         if let savedArray = defaults.array(forKey: "SavedWeekArray") as? [[String]] {
-            weekDays.weekArray = savedArray
+            week.weekArray = savedArray
             myTableView.reloadData()
             myTableView.reloadInputViews()
         }
@@ -83,6 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
        self.picker.selectRow(getCurrentDay()-1, inComponent: 0, animated: false)
+        
         //timer
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.getTimeOfDate), userInfo: nil, repeats: true)
         //rise keyboard
@@ -137,17 +131,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         scrollNum = (scrollNum * 2)+1
        
         if(minNum>30){scrollNum+=1}
-        
-//        switch scrollNum {
-//        case let x where x<=9:
-//            scrollNum = scrollNum + 39
-//        case let x where x>9:
-//            scrollNum = scrollNum - 9
-//        default:
-//            scrollNum = 0
-//            
-//        }
-        
+
 
         scrollTo(animated: true, hour: scrollNum)
         
@@ -184,7 +168,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func keyboardWillShow(_ notification:Notification) {
         
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            myTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height+34, right: 0)
+            myTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height+90, right: 0)
         }
     }
     @objc func keyboardWillHide(_ notification:Notification) {
@@ -237,9 +221,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             as! TableViewCell
 
-        cell.timeLabel.text = weekDays.times[indexPath.row]
+        cell.timeLabel.text = week.times[indexPath.row]
         
-        cell.myTextField.text = weekDays.weekArray[weekDays.weekDay-1][indexPath.row]
+        cell.myTextField.text = week.weekArray[week.weekDay.rawValue-1][indexPath.row]
         
         return cell
     
@@ -255,7 +239,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         alert.addAction(UIAlertAction(title: "Go Back", style: .destructive, handler: { action in
             
-            self.scrollTo(animated: true, hour: scrollNum)
+            self.scrollTo(animated: true, hour: self.scrollNum)
             
         }))
         alert.addAction(UIAlertAction(title: "Add New Week", style: .default, handler: { action in
@@ -282,9 +266,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
             
             
-            weekDays.delete()
+            week.delete()
             self.myTableView.reloadData()
-            self.scrollTo(animated: true, hour: scrollNum)
+            self.scrollTo(animated: true, hour: self.scrollNum)
             
         }))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
@@ -330,7 +314,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         
-        weekDays.weekDay = row+1
+        week.weekDay = WeekDay(rawValue: row+1)!
     
         
         
@@ -343,7 +327,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getCurrentDay() -> Int{
         
         let today = Date().dayNumberOfWeek()!
-        
+        print("today",today)
+    
         return today
         
     }

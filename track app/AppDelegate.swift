@@ -1,10 +1,4 @@
-//
-//  AppDelegate.swift
-//  track app
-//
-//  Created by James Hunt on 4/10/19.
-//  Copyright © 2019 James Hunt. All rights reserved.
-//
+
 
 import UIKit
 import CoreData

@@ -56,7 +56,7 @@
                                                         <constraint firstAttribute="height" constant="42" id="7Ts-vv-cip"/>
                                                     </constraints>
                                                     <color key="textColor" white="1" alpha="0.95220462328767119" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" name="SFMono-Regular" family="SF Mono" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="SFMono-Regular" family="SF Mono" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done" smartQuotesType="yes"/>
                                                 </textField>
                                             </subviews>
@@ -147,43 +147,46 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="165" id="quV-SC-7o5" customClass="TBCellWeek" customModule="track_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="165"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="190" id="quV-SC-7o5" customClass="TBCellWeek" customModule="track_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="quV-SC-7o5" id="FfD-B0-jy0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="164.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="189.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWG-ZN-vls">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="26"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWG-ZN-vls">
+                                                    <rect key="frame" x="8" y="0.0" width="359" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="mDb-gd-PZx"/>
-                                                        <constraint firstAttribute="width" constant="375" id="nHe-0h-EqP"/>
+                                                        <constraint firstAttribute="height" constant="21" id="ukV-AE-0Sd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="SFMono-Regular" family="SF Mono" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="SFMono-Regular" family="SF Mono" pointSize="17"/>
                                                     <color key="textColor" red="0.82946015100188664" green="0.82946015100188664" blue="0.82946015100188664" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhv-x8-GJ2">
-                                                    <rect key="frame" x="0.0" y="21" width="375" height="137"/>
+                                                    <rect key="frame" x="0.0" y="23" width="375" height="159"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                                    </accessibility>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="137" id="TRi-LQ-FqZ"/>
+                                                        <constraint firstAttribute="height" constant="159" id="TRi-LQ-FqZ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="SFMono-Regular" family="SF Mono" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="SFMono-Regular" family="SF Mono" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="mhv-x8-GJ2" secondAttribute="bottom" constant="6.6666666666666572" id="6cx-eQ-WTu"/>
+                                                <constraint firstAttribute="bottom" secondItem="mhv-x8-GJ2" secondAttribute="bottom" constant="7.6666666666666572" id="6cx-eQ-WTu"/>
                                                 <constraint firstAttribute="trailing" secondItem="mhv-x8-GJ2" secondAttribute="trailing" id="CWF-9j-fy3"/>
                                                 <constraint firstItem="mhv-x8-GJ2" firstAttribute="leading" secondItem="FfD-B0-jy0" secondAttribute="leading" id="EcF-g8-g49"/>
-                                                <constraint firstItem="mhv-x8-GJ2" firstAttribute="top" secondItem="XWG-ZN-vls" secondAttribute="bottom" constant="-5" id="OQm-gS-kRM"/>
-                                                <constraint firstItem="XWG-ZN-vls" firstAttribute="leading" secondItem="FfD-B0-jy0" secondAttribute="leading" id="eyc-mV-ZkQ"/>
-                                                <constraint firstItem="XWG-ZN-vls" firstAttribute="top" secondItem="FfD-B0-jy0" secondAttribute="top" id="ir9-qX-Uvo"/>
+                                                <constraint firstItem="XWG-ZN-vls" firstAttribute="leading" secondItem="FfD-B0-jy0" secondAttribute="leading" constant="8" id="LBD-xa-fCx"/>
+                                                <constraint firstItem="XWG-ZN-vls" firstAttribute="top" secondItem="FfD-B0-jy0" secondAttribute="top" id="bKY-6q-lec"/>
+                                                <constraint firstAttribute="trailing" secondItem="XWG-ZN-vls" secondAttribute="trailing" constant="8" id="gmz-a3-LUY"/>
+                                                <constraint firstItem="mhv-x8-GJ2" firstAttribute="top" secondItem="XWG-ZN-vls" secondAttribute="bottom" constant="2" id="mWu-kb-wi8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

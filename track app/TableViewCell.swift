@@ -1,10 +1,4 @@
-//
-//  TableViewCell.swift
-//  track app
-//
-//  Created by James Hunt on 4/11/19.
-//  Copyright © 2019 James Hunt. All rights reserved.
-//
+
 
 import UIKit
 import CoreData
@@ -62,19 +56,19 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate {
         let ip = getIndexPath()!
         let indexPath = ip[1]
         
-        print("text changed day.weekday is",weekDays.weekDay)
         
         
         
-        weekDays.weekArray[weekDays.weekDay-1][indexPath] = myTextField.text!
+        
+        week.weekArray[week.weekDay.rawValue-1][indexPath] = myTextField.text!
         
 
         
         pasteboard.string = myTextField.text!
         
-        defaults.set(weekDays.weekArray, forKey: "SavedWeekArray")
+        defaults.set(week.weekArray, forKey: "SavedWeekArray")
         
-        print("text has changed")
+        
     
     }
     
@@ -95,7 +89,7 @@ class TableViewCell: UITableViewCell,UITextFieldDelegate {
             return false
         }
         let newLength = currentCharacterCount + string.count - range.length
-        return newLength <= 35
+        return newLength <= 28
     }
    
     @objc func tripleTapped() {

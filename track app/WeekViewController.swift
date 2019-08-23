@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  track app
-//
-//  Created by James Hunt on 4/10/19.
-//  Copyright © 2019 James Hunt. All rights reserved.
-//
+
 
 import UIKit
 
@@ -72,7 +66,7 @@ class WeekViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         
         if let savedArray = defaults.array(forKey: "SavedWeekArray") as? [[String]] {
-            weekDays.weekArray = savedArray
+            week.weekArray = savedArray
         }
         
         
@@ -90,17 +84,11 @@ class WeekViewController: UIViewController, UITableViewDelegate, UITableViewData
         scrollNum = (scrollNum * 2)+1
         if(minNum>30){scrollNum+=1}
         
-//        switch scrollNum {
-//        case let x where x<=9:
-//            scrollNum = scrollNum + 39
-//        case let x where x>9:
-//            scrollNum = scrollNum - 9
-//        default:
-//            scrollNum = 0
-//
-//        }
+        
+        
         
         scrollTo(animated: true, hour: scrollNum)
+        
         
         
     }
@@ -146,18 +134,40 @@ class WeekViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             self.weekTableView.scrollToRow(at: indexPath, at: .top, animated: animated)
             
+            
+            
         }
     }
     
     
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var newStatus = ""
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             as! TBCellWeek
+        
+        
+      
+        
+        
+        
+        
+        
+        
        
-        cell.timeLabel.text = " \(weekDays.times[indexPath.row])"
+        
+        
+        let formatterd = DateFormatter()
+        formatterd.locale = Locale(identifier: "en_US_POSIX")
+        formatterd.dateFormat = "a"
+        formatterd.amSymbol = "AM"
+        formatterd.pmSymbol = "PM"
+        
+        let dateString = formatterd.string(from: Date())
+        
         
     
         
@@ -165,46 +175,60 @@ class WeekViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         
         
+    
         
-        let sunday = weekDays.weekArray[0][indexPath.row]
+        
+        
+       
+        cell.timeLabel.text = "\(week.times[indexPath.row])"
+        
+        
+        
+        let currentDateTime = Date()
+        
+        // initialize the date formatter and set the style
+        let formatter = DateFormatter()
+        
+        
+        
+        // get the date time String from the date object
+        
+        var newStatus = String()
+        
+        
+        
+        
+        let sunday = week.weekArray[0][indexPath.row]
         newStatus += monthDay[0]+sunday+"\n"
-        let monday = weekDays.weekArray[1][indexPath.row]
+        let monday = week.weekArray[1][indexPath.row]
             newStatus += monthDay[1]+monday+"\n"
         
-        let tuesday = weekDays.weekArray[2][indexPath.row]
+        let tuesday = week.weekArray[2][indexPath.row]
             newStatus += monthDay[2]+tuesday+"\n"
         
-        let wednesday = weekDays.weekArray[3][indexPath.row]
+        let wednesday = week.weekArray[3][indexPath.row]
             newStatus += monthDay[3]+wednesday+"\n"
         
-        let thursday = weekDays.weekArray[4][indexPath.row]
+        let thursday = week.weekArray[4][indexPath.row]
             newStatus += monthDay[4]+thursday+"\n"
         
-        let friday = weekDays.weekArray[5][indexPath.row]
+        let friday = week.weekArray[5][indexPath.row]
             newStatus += monthDay[5]+friday+"\n"
         
-        let saturday = weekDays.weekArray[6][indexPath.row]
+        let saturday = week.weekArray[6][indexPath.row]
             newStatus += monthDay[6]+saturday
         
         
         let weekday = Calendar.current.component(.weekday, from: Date())
         
-        var range = (newStatus as NSString).range(of: monthDay[weekday-1])
+        let range = (newStatus as NSString).range(of: monthDay[weekday-1])
         
-        var attributedString = NSMutableAttributedString(string:newStatus)
+        let attributedString = NSMutableAttributedString(string:newStatus)
         
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red , range: range)
         
         
-        //
      
-        
-        
-        
-        //
-        
-        //cell.statusLabels.text = newStatus
-        
         
        
         cell.statusLabels.attributedText = attributedString
@@ -235,7 +259,7 @@ class WeekViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func rightButtonTapped(_ sender: UIBarButtonItem) {
         
         //create csv
-        let weeksToExport = weekDays.weekArray
+        let weeksToExport = week.weekArray
         
         let fileName = "Tasks.csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)!
@@ -270,7 +294,7 @@ class WeekViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         for index in 0...47 {
-            csvText.append("\(weekDays.times[index]),\(weekDays.weekArray[0][index]),\(weekDays.weekArray[1][index]),\(weekDays.weekArray[2][index]),\(weekDays.weekArray[3][index]),\(weekDays.weekArray[4][index]),\(weekDays.weekArray[5][index]),\(weekDays.weekArray[6][index])\n")
+            csvText.append("\(week.times[index]),\(week.weekArray[0][index]),\(week.weekArray[1][index]),\(week.weekArray[2][index]),\(week.weekArray[3][index]),\(week.weekArray[4][index]),\(week.weekArray[5][index]),\(week.weekArray[6][index])\n")
             
             
         }
